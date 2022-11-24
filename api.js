@@ -49,7 +49,7 @@ const getPost = async (event) => {
 
     return response;
 
-}
+};
 
 const createPost = async (event) => {
 
@@ -85,7 +85,7 @@ const createPost = async (event) => {
 
     return response;
 
-}
+};
 
 const updatePost = async (event) => {
 
@@ -132,7 +132,7 @@ const updatePost = async (event) => {
 
     return response;
 
-}
+};
 
 const deletePost = async (event) => {
 
@@ -166,7 +166,7 @@ const deletePost = async (event) => {
 
     return response;
 
-}
+};
 
 const getAllPosts = async (event) => {
 
@@ -196,8 +196,9 @@ const getAllPosts = async (event) => {
 
     return response;
 
-}
+};
 
 module.exports = {
-    getPost, createPost, updatePost, deletePost, getAllPosts,
-}
+    getPost, 
+    createPost, updatePost, deletePost, getAllPosts,
+};
