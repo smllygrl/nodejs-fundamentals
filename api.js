@@ -8,29 +8,24 @@ const {
     UpdateItemCommand,
 } = require("@aws-sdk/client-dynamodb");
 
-const {marshall, unmarshall} = require("@aws-sdk/util-dynamodb");
+const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
 
 const getPost = async (event) => {
-    // Below is the response form a Lambda function, not the end point
-    // The body is what is returns from the endpoint
     const response = { statusCode: 200 };
 
     try {
 
         const params = {
             TableName: process.env.DYNAMODB_TABLE_NAME,
-            // We're going to be passing a JSON object, it needs to be converted into a DynamoDB record
-            // so that it can be recognised as a proper key
             Key: marshall({ postId: event.pathParameters.postId }),
         };
 
-        const { Item } = await db.send( new GetItemCommand(params));
+        const { Item } = await db.send(new GetItemCommand(params));
 
         console.log({Item});
 
         response.body = JSON.stringify({
             message: "Successfully retirved post.",
-            // ifthe Item is undefined, unmarshall the response
             data: (Item) ? unmarshall(Item) : {},
             rawData: Item,
         });
@@ -200,5 +195,8 @@ const getAllPosts = async (event) => {
 
 module.exports = {
     getPost, 
-    createPost, updatePost, deletePost, getAllPosts,
+    createPost,
+    updatePost, 
+    deletePost, 
+    getAllPosts,
 };
